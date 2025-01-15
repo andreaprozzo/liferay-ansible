@@ -1,0 +1,5 @@
+[liferay1]
+192.168.1.35 ansible_user=root
+
+[liferay2]
+192.168.1.36 ansible_user=root
