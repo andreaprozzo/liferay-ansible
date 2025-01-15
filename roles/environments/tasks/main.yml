@@ -1,0 +1,5 @@
+---
+
+#creo la cartella w1 all'interno della macchina target 
+- name: Creating w1 dir 
+  shell: mkdir /w1 
