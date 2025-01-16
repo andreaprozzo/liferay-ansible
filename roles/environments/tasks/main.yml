@@ -2,9 +2,11 @@
 
 #CREO L'AMBIENTE LIFERAY SULLA MACCHINA TARGET
 
-#Creo la cartella w1 all'interno della macchina target 
-# - name: Creating w1 dir 
-#   shell: mkdir /w1 
+#Creo la cartella w1 all'interno della macchina target (se esiste gia non farà nulla)
+- name: Creating or checking /w1 directory..... 
+  ansible.builtin.file:
+    path: /w1
+    state: directory
 
 #Copio e Decomprimo il file Con Tomcat nella directory /w1
 - name: Unzip Tomcat folder in the w1 directory...
