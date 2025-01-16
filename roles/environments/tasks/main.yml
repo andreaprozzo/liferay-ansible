@@ -19,6 +19,63 @@
 - name: Renaming tomcat folder
   shell: mv -v /w1/{{ tomcat }} /w1/tomcat
 
-  #Svuoto la cartella /w1/tomcat/webapps/ e al suo interno creo la cartella ROOT
+#Svuoto la cartella /w1/tomcat/webapps/ e al suo interno creo la cartella ROOT
 - name: Deleting webapps dir contains and create within ROOT dir
   shell: rm -rf /w1/tomcat/webapps/* && mkdir /w1/tomcat/webapps/ROOT
+
+#Eseguo il deploy del file liferay war nella cartella ROOT
+- name: Deploy liferay war file in the ROOT dir...
+  ansible.builtin.unarchive:
+    src: "{{ liferay_war_path }}"
+    dest: /w1/tomcat/webapps/ROOT
+
+#Decomprimo il contenuto di osgi.zip in w1
+- name: Decompressing osgi in the wi dir 
+  ansible.builtin.unarchive:
+    src: "{{ osgi_zip_path }}"
+    dest: /w1
+
+#Rinomino la cartella decompressa in osgi 
+- name: Renaming dir osgi in /w1
+  shell: mv {{ osgi_package }} /w1/osgi
+
+
+#Creo la cartella configs all'interno di osgi
+- name: Creating configs dir into osgi
+  ansible.builtin.file:
+    path: /w1/osgi/configs
+    state: directory
+
+#Creo la cartella config all'interno di w1
+- name: Creating config dir into /w1 
+  ansible.builtin.file:
+    path: /w1/config 
+    state: directory
+
+
+#Creo la cartella bin in w1
+- name: Creating bin dir into w1 
+  ansible.builtin.file:
+    path: /w1/bin
+    state: directory
+
+
+#Creo la cartella Catalina in Tomcat/conf
+- name: Creating Catalina dir into tomcat/conf
+  ansible.builtin.file:
+    path: /w1/tomcat/conf/Catalina
+    state: directory
+
+
+#Creo la cartella localhost dentro /tomcat/conf/Catalina
+- name: Creating localhost dir into /tomcat/conf/Catalina
+  ansible.builtin.file:
+    path: /w1/tomcat/conf/Catalina/localhost
+    state: directory 
+
+
+#Creo la cartella deploy all'interno del percorso principale /w1/
+- name: Creating deploy dir into /w1
+  ansible.builtin.file:
+    path: /w1/deploy
+    state: directory

@@ -1,2 +1,5 @@
 tomcat_zip_path: "/tmp/sw_liferay/apache-tomcat-9.0.73.zip"
 tomcat: "apache-tomcat-9.0.73"
+liferay_war_path: "/tmp/sw_liferay/liferay-dxp-7.4.13.u67-20230308143615766.war"
+osgi_zip_path: "/tmp/sw_liferay/liferay-dxp-osgi-7.4.13.u67-20230308143615766.zip"
+osgi_package: "/w1/liferay-dxp-osgi-7.4.13.u67"
