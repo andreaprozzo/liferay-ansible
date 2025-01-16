@@ -13,7 +13,7 @@
   ansible.builtin.unarchive:
     src:  "{{ tomcat_zip_path }}" 
     dest: /w1
-    remore_src: yes
+    remore_src: no
 
 #Rinomino la cartella con tomcat
 - name: Renaming tomcat folder
