@@ -11,7 +11,7 @@
 #Copio e Decomprimo il file Con Tomcat nella directory /w1
 - name: Unzip Tomcat folder in the w1 directory...
   ansible.builtin.unarchive:
-    src: "/{{ tomcat_zip_path }}"
+    src:  "{{ tomcat_zip_path }}" 
     dest: /w1
     remore_src: yes
 
