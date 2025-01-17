@@ -11,77 +11,85 @@
   ansible.builtin.copy:
     src: "/{{ item }}"
     dest: "/{{ tomcat_bin_folder }}"
+    remote_src: yes
   with_items:
   - /{{settings_files_repo}}/startup.sh
   - /{{settings_files_repo}}/shutdown.sh
   - /{{settings_files_repo}}/setenv.sh
-    remote_src: yes
+    
 
 #Copio i files lportal e setenv in /w1/tomcat/bin
 - name: Copying lportal , setenv into /w1/bin
   ansible.builtin.copy:
     src: "/{{ item }}"
     dest: "/{{ w1_bin_folder }}"
+    remote_src: yes
   with_items:
   - /{{settings_files_repo}}/lportal
   - /{{settings_files_repo}}/setenv
-    remote_src: yes
+    
 
 #Copio il file ROOT.xml  /w1/tomcat/conf/Catalina/localhost
 - name: Copying ROOT.xml into /w1/tomcat/conf/Catalina/localhost
   ansible.builtin.copy:
     src: "/{{ item }}"
     dest: "/{{ catalina_localhost }}"
+    remote_src: yes
   with_items:
   - /{{settings_files_repo}}/ROOT.xml
-    remote_src: yes
+    
 
 #Copio il file ElasticsearchConfiguration.config in /w1/tomcat/bin
 - name: Copying com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConfiguration.config into /w1/osgi/configs
   ansible.builtin.copy:
     src: "/{{ item }}"
     dest: "/{{ elastic_settings }}"
+    remote_src: yes
   with_items:
   - /{{settings_files_repo}}/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConfiguration.config
-    remote_src: yes
-    
+
+
   #Copio il file portal-ext.properties in /w1
 - name: Copying portal-ext.properties file into /w1 folder
   ansible.builtin.copy:
     src: "/{{ item }}"
     dest: "/{{ main_liferay_folder }}"
+    remote_src: yes
   with_items:
   - /{{settings_files_repo}}/portal-ext.properties
-    remote_src: yes
+
 
 #Copio il file portal-runtime.properties in /w1/config
 - name: Copying portal-runtime.properties file into /w1/config
   ansible.builtin.copy:
     src: "/{{ item }}"
     dest: "/{{ config_liferay_folder }}"
+    remote_src: yes
   with_items:
   - /{{settings_files_repo}}/portal-runtime.properties
-    remote_src: yes
+    
 
 #Copio i files catalina.properties, logging.properties, server.xml in /w1/tomcat/conf
 - name: Copying catalina.properties, logging.properties, server.xml into /w1/tomcat/conf
   ansible.builtin.copy:
     src: "/{{ item }}"
     dest: "/{{ tomcat_conf_folder }}"
+    remote_src: yes
   with_items:
   - /{{settings_files_repo}}/catalina.properties
   - /{{settings_files_repo}}/logging.properties
   - /{{settings_files_repo}}/server.xml
-    remote_src: yes
+ 
 
 #Copio il file della licenza in /w1/deploy
 - name: Insert licence file into /w1/deploy
   ansible.builtin.copy:
     src: "/{{ item }}"
     dest: "/{{ liferay_licence }}"
+    remote_src: yes
   with_items:
   - /{{settings_files_repo}}/activation-key-dxp-trial-7.4.xml
-    remote_src: yes
+
 
 #Do i permessi di esecuzione ai files sh
 - name: Give the exec permission to files .sh
