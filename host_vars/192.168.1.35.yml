@@ -6,3 +6,12 @@ osgi_zip_path: "/tmp/sw_liferay/liferay-dxp-osgi-7.4.13.u67-20230308143615766.zi
 osgi_package: "/w1/liferay-dxp-osgi-7.4.13.u67"
 
 #variabili per role settings
+tomcat_bin_folder: "/w1/tomcat/bin"
+settings_files_repo: "/tmp/sw_liferay/"
+w1_bin_folder: "/w1/bin"
+catalina_localhost: /w1/tomcat/conf/Catalina/localhost
+elastic_settings: "/w1/osgi/configs" 
+main_liferay_folder: "/w1"
+config_liferay_folder: "/w1/config"
+tomcat_conf_folder: "/w1/tomcat/conf"
+liferay_licence: "/tmp/sw_liferay/activation-key-dxp-trial-7.4.xml"
