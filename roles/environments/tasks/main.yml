@@ -28,12 +28,14 @@
   ansible.builtin.unarchive:
     src: "{{ liferay_war_path }}"
     dest: /w1/tomcat/webapps/ROOT
+    remote_src: yes
 
 #Decomprimo il contenuto di osgi.zip in w1
 - name: Decompressing osgi in the wi dir 
   ansible.builtin.unarchive:
     src: "{{ osgi_zip_path }}"
     dest: /w1
+    remote_src: yes
 
 #Rinomino la cartella decompressa in osgi 
 - name: Renaming dir osgi in /w1
