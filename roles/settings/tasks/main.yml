@@ -2,9 +2,9 @@
 
 #IMPOSTO I SETTAGGI PER LIFERAY 
 
-#Faccio backup dei files startup.sh shutdown.sh, rinominandoli con la data in fondo 
-- name: Backup dei files startup.sh shutdown.sh ....
-  shell: mv /w1/tomcat/bin/startup.sh /w1/tomcat/bin/startup.sh.backup && mv /w1/tomcat/bin/shutdown.sh /w1/tomcat/bin/shutdown.sh.backup
+# #Faccio backup dei files startup.sh shutdown.sh, rinominandoli con la data in fondo 
+# - name: Backup dei files startup.sh shutdown.sh ....
+#   shell: mv /w1/tomcat/bin/startup.sh /w1/tomcat/bin/startup.sh.backup && mv /w1/tomcat/bin/shutdown.sh /w1/tomcat/bin/shutdown.sh.backup
 
 #Copio i files startup.sh e setenv.sh in /w1/tomcat/bin
 - name: Copying startup.sh , setenv.sh into /w1/tomcat/bin
