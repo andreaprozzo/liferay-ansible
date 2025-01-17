@@ -1,5 +1,5 @@
 - hosts: liferay1
   become: true
-  roles: 
-    #- environments
+  roles:
+    - environments
     - settings

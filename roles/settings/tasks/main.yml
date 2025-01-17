@@ -3,9 +3,8 @@
 #IMPOSTO I SETTAGGI PER LIFERAY 
 
 #Faccio backup dei files startup.sh shutdown.sh, rinominandoli con la data in fondo 
-- name: Backup dei files startup.sh shutdown.sh .... 
+- name: Backup dei files startup.sh shutdown.sh ....
   shell: mv /w1/tomcat/bin/startup.sh /w1/tomcat/bin/startup.sh.backup && mv /w1/tomcat/bin/shutdown.sh /w1/tomcat/bin/shutdown.sh.backup
-
 
 #Copio i files startup.sh e setenv.sh in /w1/tomcat/bin
 - name: Copying startup.sh , setenv.sh into /w1/tomcat/bin
@@ -13,9 +12,9 @@
     src: "/{{ item }}"
     dest: "/{{ tomcat_bin_folder }}"
   with_items:
-    - /{{settings_files_repo}}/startup.sh
-    - /{{settings_files_repo}}/shutdown.sh
-    - /{{settings_files_repo}}/setenv.sh
+  - /{{settings_files_repo}}/startup.sh
+  - /{{settings_files_repo}}/shutdown.sh
+  - /{{settings_files_repo}}/setenv.sh
 
 #Copio i files lportal e setenv in /w1/tomcat/bin
 - name: Copying lportal , setenv into /w1/bin
@@ -23,8 +22,8 @@
     src: "/{{ item }}"
     dest: "/{{ w1_bin_folder }}"
   with_items:
-    - /{{settings_files_repo}}/lportal
-    - /{{settings_files_repo}}/setenv
+  - /{{settings_files_repo}}/lportal
+  - /{{settings_files_repo}}/setenv
 
 #Copio il file ROOT.xml  /w1/tomcat/conf/Catalina/localhost
 - name: Copying ROOT.xml into /w1/tomcat/conf/Catalina/localhost
@@ -32,7 +31,7 @@
     src: "/{{ item }}"
     dest: "/{{ catalina_localhost }}"
   with_items:
-    - /{{settings_files_repo}}/ROOT.xml
+  - /{{settings_files_repo}}/ROOT.xml
 
 #Copio il file ElasticsearchConfiguration.config in /w1/tomcat/bin
 - name: Copying com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConfiguration.config into /w1/osgi/configs
@@ -40,17 +39,14 @@
     src: "/{{ item }}"
     dest: "/{{ elastic_settings }}"
   with_items:
-    - /{{settings_files_repo}}/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConfiguration.config
-
-  
+  - /{{settings_files_repo}}/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConfiguration.config
   #Copio il file portal-ext.properties in /w1
 - name: Copying portal-ext.properties file into /w1 folder
-ansible.builtin.copy:
-  src: "/{{ item }}"
-  dest: "/{{ main_liferay_folder }}"
-with_items:
+  ansible.builtin.copy:
+    src: "/{{ item }}"
+    dest: "/{{ main_liferay_folder }}"
+  with_items:
   - /{{settings_files_repo}}/portal-ext.properties
-
 
 #Copio il file portal-runtime.properties in /w1/config
 - name: Copying portal-runtime.properties file into /w1/config
@@ -58,8 +54,7 @@ with_items:
     src: "/{{ item }}"
     dest: "/{{ config_liferay_folder }}"
   with_items:
-    - /{{settings_files_repo}}/portal-runtime.properties
-
+  - /{{settings_files_repo}}/portal-runtime.properties
 
 #Copio i files catalina.properties, logging.properties, server.xml in /w1/tomcat/conf
 - name: Copying catalina.properties, logging.properties, server.xml into /w1/tomcat/conf
@@ -67,17 +62,18 @@ with_items:
     src: "/{{ item }}"
     dest: "/{{ tomcat_conf_folder }}"
   with_items:
-    - /{{settings_files_repo}}/catalina.properties
-    - /{{settings_files_repo}}/logging.properties
-    - /{{settings_files_repo}}/server.xml
+  - /{{settings_files_repo}}/catalina.properties
+  - /{{settings_files_repo}}/logging.properties
+  - /{{settings_files_repo}}/server.xml
 
 #Copio il file della licenza in /w1/deploy
 - name: Insert licence file into /w1/deploy
-  copy:
-    src: "{{ liferay_licence }}"/
-    dest: /w1/deploy
+  ansible.builtin.copy:
+    src: "/{{ item }}"
+    dest: "/{{ liferay_licence }}"
+  with_items:
+  - /{{settings_files_repo}}/activation-key-dxp-trial-7.4.xml
 
 #Do i permessi di esecuzione ai files sh
 - name: Give the exec permission to files .sh
   file: dest=/w1/tomcat/bin/ mode=a+x
-
